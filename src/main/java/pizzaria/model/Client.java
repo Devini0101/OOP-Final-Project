@@ -7,31 +7,37 @@ package pizzaria.model;
 import java.util.ArrayList;
 /**
  *
- * @author letic
+ * @author Vinicius Dias
  */
 public class Client {
+
     private String name;
-    private String lastName;
-    private String phoneNumber;
+    private String lastname;
+    private String telephone;
     private ArrayList<Order> orders;
-    
-    public Client(String name, String lastName, String phoneNumber){
+
+    public Client (String name, String lastname, String telephone) {
         this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
+        this.lastname = lastname;
+        this.telephone = telephone;
     }
-    
+
+    //getters e setters
+    public String getName() { return name;}
+    public void setName(String name) {this.name = name;}
+
+    public String getLastname() { return lastname;}
+    public void setLastname(String lastname) {this.lastname = lastname;}
+
+    public String getTelephone() { return telephone;}
+    public void setTelephone(String telephone) {this.telephone = telephone;}
+
     public void newOrder(Order order){
         orders.add(order);
     }
-    
-    public String getName(){
-        return this.name;
+
+    @Override
+    public String toString() {
+        return name + " " + lastname + " - " + telephone;
     }
-    
-    public String getPhoneNumber(){
-        return this.phoneNumber;
-    }
-    
-    
 }
