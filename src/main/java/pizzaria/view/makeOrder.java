@@ -122,7 +122,8 @@ public class makeOrder extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        listFlavors flavorsScreen = new listFlavors(this);
+        String format = jComboBox1.getSelectedItem().toString();
+        listFlavors flavorsScreen = new listFlavors(this, format);
         javax.swing.JFrame mainScreen = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         mainScreen.setContentPane(flavorsScreen);
         
