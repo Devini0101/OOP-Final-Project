@@ -15,13 +15,15 @@ public class makeOrder extends javax.swing.JPanel {
 
     private ArrayList<Client> clientList;
     private javax.swing.JPanel lastScreen;
+    private Client selectedClient;
     /**
      * Creates new form makeOrder
      */
-    public makeOrder(ArrayList<Client> originalList, javax.swing.JPanel lastScreen) {
+    public makeOrder(ArrayList<Client> originalList, javax.swing.JPanel lastScreen, Client selectedClient) {
         initComponents();
         this.clientList = originalList;
         this.lastScreen = lastScreen;
+        this.selectedClient = selectedClient;
     }
     /**
      * This method is called from within the constructor to initialize the form.
