@@ -27,7 +27,7 @@ public class Order {
         this.id = id;
         this.pizzas.add(pizza);
         client.newOrder(this);
-        this.orderStatus = "PENDING";
+        this.orderStatus = "ABERTO";
     }
 
     public String getOrderStatus() {
