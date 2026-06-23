@@ -4,6 +4,9 @@
  */
 package pizzaria.view;
 
+import pizzaria.Pizzaria;
+import pizzaria.model.Client;
+
 /**
  *
  * @author Vinicius Dias
@@ -12,14 +15,30 @@ public class listFlavors extends javax.swing.JPanel {
 
     private javax.swing.JPanel lastScreen;
     private String SelectedFormat;
+    private Client selectedClient;
+    private Pizzaria sistema;
     /**
      * Creates new form listFlavors
      */
-    public listFlavors(javax.swing.JPanel lastScreen, String SelectedFormat) {
+    public listFlavors(javax.swing.JPanel lastScreen, String SelectedFormat, Pizzaria sistema, Client selectedClient) {
         this.SelectedFormat = SelectedFormat;
+        switch (SelectedFormat){
+            case "Círculo":
+                
+                break;
+            case "Triângulo":
+                break;
+            case "Quadrado":
+                break;
+            default:
+        }
         this.lastScreen = lastScreen;
+        this.sistema = sistema;
+        this.selectedClient = selectedClient;
         initComponents();
         jLabel2.setText("Formato Selecionado: " + SelectedFormat);
+        jLabel4.setText("Cliente: " + selectedClient.getName());
+        jLabel5.setText("Telefone: " + selectedClient.getTelephone());
     }
 
     /**
@@ -40,6 +59,8 @@ public class listFlavors extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,19 +100,14 @@ public class listFlavors extends javax.swing.JPanel {
         jButton2.setText("Voltar");
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
+        jLabel4.setText("Cliente:");
+
+        jLabel5.setText("Telefone:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap(107, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -102,6 +118,19 @@ public class listFlavors extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(302, 302, 302))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +144,10 @@ public class listFlavors extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jButton2))
                 .addGap(8, 8, 8)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,6 +174,8 @@ public class listFlavors extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

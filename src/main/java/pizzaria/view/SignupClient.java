@@ -3,6 +3,7 @@ package pizzaria.view;
 import pizzaria.model.Client;
 import java.util.ArrayList;
 import javax.swing.JOptionPane; // Para as mensagens de alerta
+import pizzaria.Pizzaria;
 /**
  *
  * @author Vinicius Dias
@@ -10,14 +11,16 @@ import javax.swing.JOptionPane; // Para as mensagens de alerta
 public class SignupClient extends javax.swing.JPanel {
 
     private ArrayList<Client> clientList;
+    private Pizzaria sistema;
     private int clientIndex = -1;
     private javax.swing.JPanel lastScreen;
     /**
      * Creates new form CadastraCliente
      */
-    public SignupClient(ArrayList<Client> clientList, int clientIndex, javax.swing.JPanel lastScreen) {
+    public SignupClient(Pizzaria sistema, int clientIndex, javax.swing.JPanel lastScreen) {
         initComponents();
-        this.clientList = clientList;
+        this.sistema = sistema;
+        this.clientList = sistema.getClients();
         this.clientIndex = clientIndex;
         this.lastScreen = lastScreen;
 
@@ -194,7 +197,7 @@ public class SignupClient extends javax.swing.JPanel {
     
     
     private void clientListScreen(){
-        ListClient telaLista = new ListClient(this.clientList);
+        ListClient telaLista = new ListClient(this.sistema);
         javax.swing.JFrame mainScreen = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         mainScreen.setContentPane(telaLista);
         mainScreen.revalidate();
