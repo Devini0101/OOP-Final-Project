@@ -8,6 +8,7 @@ import pizzaria.model.Client;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pizzaria.Pizzaria;
 
 /**
  *
@@ -17,12 +18,14 @@ public class ListClient extends javax.swing.JPanel {
 
     private DefaultTableModel tableModel;
     private ArrayList<Client> clientList;
+    private Pizzaria sistema;
     /**
      * Creates new form PainelListaCliente
      */
-    public ListClient( ArrayList<Client> originalList) {
+    public ListClient(Pizzaria sistema) {
        initComponents();
-       this.clientList = originalList;
+       this.sistema = sistema;
+       this.clientList = sistema.getClients();
        this.tableModel = (DefaultTableModel) jTable1.getModel();
        updateTable(this.clientList);
     }
@@ -184,7 +187,7 @@ public class ListClient extends javax.swing.JPanel {
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        SignupClient signupScreen = new SignupClient(clientList, -1, this); //-1 é para cadastro de cliente e this é referente ao painel atual
+        SignupClient signupScreen = new SignupClient(this.sistema, -1, this); //-1 é para cadastro de cliente e this é referente ao painel atual
         javax.swing.JFrame janelaPrincipal = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         janelaPrincipal.setContentPane(signupScreen);
         janelaPrincipal.revalidate();
@@ -198,7 +201,7 @@ public class ListClient extends javax.swing.JPanel {
             Client selectedClient = this.clientList.get(selectedRow);
             
             // Instancia a view de fazer pedido passando a lista e o cliente selecionado
-            makeOrder makeOrderScreen = new makeOrder(this.clientList, this, selectedClient);
+            makeOrder makeOrderScreen = new makeOrder(this.sistema, this, selectedClient);
             
             javax.swing.JFrame janelaPrincipal = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
             janelaPrincipal.setContentPane(makeOrderScreen);
@@ -232,7 +235,7 @@ public class ListClient extends javax.swing.JPanel {
         int selectedRow = jTable1.getSelectedRow();
 
         if ( selectedRow >=0 ){
-            SignupClient editScreen = new SignupClient( this.clientList, selectedRow, this);
+            SignupClient editScreen = new SignupClient( this.sistema, selectedRow, this);
             javax.swing.JFrame janelaPrincipal = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
             janelaPrincipal.setContentPane(editScreen);
             janelaPrincipal.revalidate();
