@@ -1,3 +1,7 @@
-pizzaria\view\listFlavors.class
+pizzaria\view\ListFlavours.class
 pizzaria\view\makeOrder.class
 pizzaria\model\Pizza$1.class
+pizzaria\view\Home.class
+pizzaria\view\ListAvaliableFlavors.class
+pizzaria\view\ListFlavours$1.class
+pizzaria\view\SignupFlavour.class

@@ -18,7 +18,19 @@ public class Flavour {
         this.name = name;
     }
     
+    public void setType(PizzaType pizzaType) {
+        this.pizzaType = pizzaType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public PizzaType getType(){
         return this.pizzaType;
+    }
+    
+    public String getName(){
+        return this.name;
     }
 }

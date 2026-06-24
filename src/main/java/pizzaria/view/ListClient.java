@@ -58,6 +58,7 @@ public class ListClient extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -108,7 +109,10 @@ public class ListClient extends javax.swing.JPanel {
         jButton3.setText("Editar");
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVoltar.setText("Inicio");
+        btnVoltar.addActionListener(this::btnVoltarActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18));
         jLabel1.setText("Clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -122,7 +126,9 @@ public class ListClient extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4) // Adicionar no canto esquerdo
+                                .addComponent(btnVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addGap(12, 12, 12)
@@ -136,7 +142,7 @@ public class ListClient extends javax.swing.JPanel {
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3))
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))) // Gerar Pedido substitui visualmente o Adicionar antigo
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
@@ -147,6 +153,7 @@ public class ListClient extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
+                    .addComponent(btnVoltar)
                     .addComponent(jButton4) 
                     .addComponent(jButton5))
                 .addGap(14, 14, 14)
@@ -226,8 +233,17 @@ public class ListClient extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Cliente excluido com sucesso!");
             }
         } else {
-            //Prevenir exclusão sem cliente selecionado
             JOptionPane.showMessageDialog(this,"Selecione um cliente na tabela para excluir.","Atenção",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
+        Home telaHome = new Home(this.sistema);
+        javax.swing.JFrame janelaPrincipal = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (janelaPrincipal != null) {
+            janelaPrincipal.setContentPane(telaHome);
+            janelaPrincipal.revalidate();
+            janelaPrincipal.repaint();
         }
     }
 
@@ -252,6 +268,7 @@ public class ListClient extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

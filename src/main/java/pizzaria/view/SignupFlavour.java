@@ -4,21 +4,25 @@ import pizzaria.model.Flavour;
 import pizzaria.model.PizzaType;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import pizzaria.Pizzaria;
 
 /**
  * @author eduardo
+ * @author Vinicius Dias
  */
 public class SignupFlavour extends javax.swing.JPanel {
 
     private ArrayList<Flavour> flavourList;
     private int flavourIndex;
     private javax.swing.JPanel lastScreen;
+    private Pizzaria sistema;
 
-    public SignupFlavour(ArrayList<Flavour> flavourList, int flavourIndex, javax.swing.JPanel lastScreen) {
+    public SignupFlavour(ArrayList<Flavour> flavourList, int flavourIndex, javax.swing.JPanel lastScreen, Pizzaria sistema) {
         initComponents();
         this.flavourList = flavourList;
         this.flavourIndex = flavourIndex;
         this.lastScreen = lastScreen;
+        this.sistema = sistema;
 
         // Preenche o ComboBox com os tipos disponíveis
         jComboBox1.removeAllItems();
@@ -123,7 +127,7 @@ public class SignupFlavour extends javax.swing.JPanel {
             javax.swing.JFrame mainScreen = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
             mainScreen.setContentPane(this.lastScreen);
             mainScreen.revalidate();
-            mainScreen.repaint();
+           mainScreen.repaint();
         } else {
             jTextField1.setText("");
             jComboBox1.setSelectedIndex(0);
@@ -175,7 +179,7 @@ public class SignupFlavour extends javax.swing.JPanel {
     }
 
     private void flavourListScreen() {
-        ListFlavours tela = new ListFlavours(this.flavourList);
+        ListFlavours tela = new ListFlavours(this.sistema, this);
         javax.swing.JFrame mainScreen = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         mainScreen.setContentPane(tela);
         mainScreen.revalidate();

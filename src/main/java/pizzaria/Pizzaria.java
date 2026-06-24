@@ -9,8 +9,9 @@ import pizzaria.model.Client;
 import pizzaria.model.Order;
 import pizzaria.model.PriceTable;
 import java.util.NoSuchElementException;
-import pizzaria.view.SignupClient;
 import javax.swing.JFrame;
+import pizzaria.model.Flavour;
+import pizzaria.view.Home;
 
 /**
  *
@@ -21,11 +22,13 @@ public class Pizzaria {
     private ArrayList<Order> orders;
     private ArrayList<Client> clients;
     private PriceTable priceTable;
+    private ArrayList<Flavour> flavoursList; // Ou ArrayList<Sabor> se usou uma classe para o modelo
 
     public Pizzaria(){
         this.orders = new ArrayList<>();
         this.clients = new ArrayList<>();
         this.priceTable = new PriceTable();
+        this.flavoursList = new ArrayList<>();
     }
     
     public ArrayList<Client> getClients() {
@@ -38,6 +41,10 @@ public class Pizzaria {
 
     public PriceTable getPriceTable() {
         return priceTable;
+    }
+    
+    public ArrayList<Flavour> getFlavoursList(){
+        return flavoursList;
     }
 
     public void newOrder(Client client, Pizza pizza){
@@ -90,6 +97,13 @@ public class Pizzaria {
         orders.removeIf(order -> order.getClient().equals(client));
         clients.remove(client);
     }
+    
+    public void deleteFlavour(Flavour flavour) {
+        if (flavour == null || flavour.getName() == null) {
+            return;
+        }
+        this.flavoursList.removeIf(f -> f.getName().equalsIgnoreCase(flavour.getName().trim()));
+    }
 
     public static void main(String[] args) {
         Pizzaria pizzaria = new Pizzaria();
@@ -98,9 +112,10 @@ public class Pizzaria {
         screen.setSize(800, 600);
         screen.setLocationRelativeTo(null);
 
-        SignupClient telaCadastro = new SignupClient( pizzaria , -1, null); // -1 == cadastro de cliente
-        screen.add(telaCadastro);
-
+        Home telaHome = new Home(pizzaria);
+//        SignupClient telaCadastro = new SignupClient( pizzaria , -1, null); // -1 == cadastro de cliente;
+//        screen.add(telaCadastro);
+        screen.add(telaHome);
         screen.setVisible(true);
     }
 

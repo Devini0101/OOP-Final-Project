@@ -4,18 +4,24 @@ import pizzaria.model.Flavour;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pizzaria.Pizzaria;
 
 /**
  * @author eduardo
+ * @author Vinicius Dias
  */
 public class ListFlavours extends javax.swing.JPanel {
 
     private DefaultTableModel tableModel;
     private ArrayList<Flavour> flavourList;
-
-    public ListFlavours(ArrayList<Flavour> flavourList) {
+    private Pizzaria sistema;
+    private javax.swing.JPanel lastScreen;
+    
+    public ListFlavours(Pizzaria sistema, javax.swing.JPanel lastScreen) {
+        this.lastScreen = lastScreen;
         initComponents();
-        this.flavourList = flavourList;
+        this.sistema = sistema;
+        this.flavourList = this.sistema.getFlavoursList();
         this.tableModel = (DefaultTableModel) jTable1.getModel();
         updateTable(this.flavourList);
     }
@@ -41,6 +47,7 @@ public class ListFlavours extends javax.swing.JPanel {
         jButton4    = new javax.swing.JButton();
         jButton2    = new javax.swing.JButton();
         jButton3    = new javax.swing.JButton();
+        btnVoltar   = new javax.swing.JButton();
         jLabel1     = new javax.swing.JLabel();
 
         jButton1.setText("Buscar");
@@ -78,6 +85,9 @@ public class ListFlavours extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18));
         jLabel1.setText("Sabores");
 
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(this::btnVoltarActionPerformed);
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,6 +99,8 @@ public class ListFlavours extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
@@ -113,6 +125,7 @@ public class ListFlavours extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
+                    .addComponent(btnVoltar)
                     .addComponent(jButton4))
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
@@ -127,7 +140,7 @@ public class ListFlavours extends javax.swing.JPanel {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
     }
-
+    
     // Busca por nome
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         String search = jTextField1.getText().toLowerCase().trim();
@@ -140,7 +153,7 @@ public class ListFlavours extends javax.swing.JPanel {
 
     // Adicionar novo sabor
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        SignupFlavour tela = new SignupFlavour(flavourList, -1, this);
+        SignupFlavour tela = new SignupFlavour(flavourList, -1, this, this.sistema);
         javax.swing.JFrame janela = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
         janela.setContentPane(tela);
         janela.revalidate();
@@ -169,7 +182,7 @@ public class ListFlavours extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         int row = jTable1.getSelectedRow();
         if (row >= 0) {
-            SignupFlavour tela = new SignupFlavour(flavourList, row, this);
+            SignupFlavour tela = new SignupFlavour(flavourList, row, this, this.sistema);
             javax.swing.JFrame janela = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
             janela.setContentPane(tela);
             janela.revalidate();
@@ -180,8 +193,21 @@ public class ListFlavours extends javax.swing.JPanel {
         }
     }
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
+        if (this.lastScreen != null) {
+            javax.swing.JFrame janela = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (janela != null) {
+                janela.setContentPane(this.lastScreen);
+                janela.revalidate();
+                janela.repaint();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma tela anterior foi registrada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
     
-    private javax.swing.JButton jButton1, jButton2, jButton3, jButton4;
+    private javax.swing.JButton jButton1, jButton2, jButton3, jButton4, btnVoltar;
     private javax.swing.JLabel jLabel1, jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

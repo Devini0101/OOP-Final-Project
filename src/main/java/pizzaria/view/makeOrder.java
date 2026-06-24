@@ -5,6 +5,7 @@
 package pizzaria.view;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import pizzaria.Pizzaria;
 import pizzaria.forma.Circle;
 import pizzaria.model.Client;
@@ -19,6 +20,7 @@ public class makeOrder extends javax.swing.JPanel {
     private Pizzaria sistema;
     private javax.swing.JPanel lastScreen;
     private Client selectedClient;
+    private double orderArea;
     /**
      * Creates new form makeOrder
      */
@@ -29,6 +31,7 @@ public class makeOrder extends javax.swing.JPanel {
         this.lastScreen = lastScreen;
         this.selectedClient = selectedClient;
         jTextField2.setText("0");
+        jComboBox1ActionPerformed(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,11 +150,23 @@ public class makeOrder extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String dimensionText = jTextField2.getText().replace(",", ".");        
+        try {
+            double dimension = Double.parseDouble(dimensionText);
+            if (dimension <= 0) {
+                JOptionPane.showMessageDialog(this, "A dimensão deve ser maior que 0 para prosseguir com o pedido!", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira um valor numérico válido para a dimensão!", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String format = jComboBox1.getSelectedItem().toString();
-        listFlavors flavorsScreen = new listFlavors(this, format, this.sistema, this.selectedClient);
+        ListAvaliableFlavors flavorsScreen = new ListAvaliableFlavors(this, format, this.sistema, this.selectedClient, jTextField2.getText());
+        
         javax.swing.JFrame mainScreen = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-        mainScreen.setContentPane(flavorsScreen);
-     
+        mainScreen.setContentPane(flavorsScreen);  
         mainScreen.revalidate();
         mainScreen.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -186,7 +201,7 @@ public class makeOrder extends javax.swing.JPanel {
                     jLabel3.setText("Dimensão(cm):");
         }
         // Alimenta os campos de texto com os formatos padrão calculados
-        jTextField2.setText(String.format("%.2f", formatDefault));
+        jTextField2.setText(String.valueOf(formatDefault));
         jLabel4.setText("Área (cm 2): " + String.format("%.2f", areaDefault));
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
