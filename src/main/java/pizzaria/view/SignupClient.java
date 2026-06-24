@@ -54,7 +54,8 @@ public class SignupClient extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-
+        btnHome   = new javax.swing.JButton();
+        
         setPreferredSize(new java.awt.Dimension(715, 380));
 
         jTextField1.setToolTipText("Nome do cliente");
@@ -88,6 +89,9 @@ public class SignupClient extends javax.swing.JPanel {
         jButton2.setToolTipText("");
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
+        btnHome.setText("Início");
+        btnHome.setToolTipText("Voltar para o menu principal");
+        btnHome.addActionListener(this::btnHomeActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,6 +115,8 @@ public class SignupClient extends javax.swing.JPanel {
                 .addGap(273, 273, 273))
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
+                .addComponent(btnHome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -118,7 +124,8 @@ public class SignupClient extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) // Alinha os dois botões na horizontal
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHome)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -195,6 +202,15 @@ public class SignupClient extends javax.swing.JPanel {
         clientListScreen();
     }
     
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {
+        Home telaHome = new Home(this.sistema);
+        javax.swing.JFrame mainScreen = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (mainScreen != null) {
+            mainScreen.setContentPane(telaHome);
+            mainScreen.revalidate();
+            mainScreen.repaint();
+        }
+    }
     
     private void clientListScreen(){
         ListClient telaLista = new ListClient(this.sistema);
@@ -204,6 +220,7 @@ public class SignupClient extends javax.swing.JPanel {
         mainScreen.repaint();
     }
     // Variables declaration - do not modify
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

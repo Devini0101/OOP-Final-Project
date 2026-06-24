@@ -16,10 +16,10 @@ import pizzaria.model.PriceTable;
  * @author letic
  */
 public class Pizza {
+    
     private Forma forma;
     private Flavour[] flavours = new Flavour[2];
     private double price = 0.00;
-    
    
     public double getPrice(PriceTable priceTable){
         for (Flavour flavour : flavours){
