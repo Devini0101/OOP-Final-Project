@@ -371,7 +371,12 @@ public class ListAvaliableFlavors extends javax.swing.JPanel {
             this.sistema.newOrder(this.selectedClient, pizzaUnicaDoPedido, valorTotalFinal);
 
             JOptionPane.showMessageDialog(this, "Pedido gravado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            //add direcionamento para a tela de listagem
+            
+            javax.swing.JFrame window = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            ListOrders listOrdersWindow = new ListOrders(this, this.sistema);
+            window.setContentPane(listOrdersWindow);
+            window.revalidate();
+            window.repaint();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
