@@ -12,6 +12,7 @@ import pizzaria.model.PriceTable;
 
 /**
  *
+ * @author letic
  * @author Vinicius Dias
  */
 public class ListOrders extends javax.swing.JPanel {
